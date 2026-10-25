@@ -1,0 +1,15 @@
+# Redis for local development. The demos and tests run without it
+# (in-memory stand-ins), but set REDIS_CONNECTION=localhost:6379 to run
+# the same code against this real instance.
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: redis-demo
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:
